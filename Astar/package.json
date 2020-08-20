@@ -1,0 +1,8 @@
+{
+  "name": "AStart",
+  "version": "1.0.0",
+  "description": "AStar algorithim",
+  "main": "index.js",
+  "author": "jonathancsr",
+  "license": "MIT"
+}
