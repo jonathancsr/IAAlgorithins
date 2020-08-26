@@ -1,5 +1,5 @@
-let cols = 25;
-let rows = 25;
+let cols = 250;
+let rows = 250;
 let grid= new Array(cols)
 
 let openSet = [];
@@ -27,9 +27,17 @@ function Stop(i,j) {
   this.h = 0;
   this.neighbors = [];
   this.previous = undefined;
+  this.wall = false;
+
+  if(random(1) < 0.3){
+    this.wall = true;
+  }
 
   this.show = function (color) {
     fill(color);
+    if(this.wall){
+      fill(0);
+    }
     noStroke(0);
     rect(this.x * w,this.y * h, w - 1,h - 1)
   }
@@ -47,10 +55,22 @@ function Stop(i,j) {
     if(this.y > 0){
       this.neighbors.push(grid[this.x][this.y-1]);
     }
+    if(this.x > 0 && this.y > 0){
+      this.neighbors.push(grid[this.x-1][this.y-1]);
+    }
+    if(this.x < cols-1 && this.y > 0){
+      this.neighbors.push(grid[this.x+1][this.y-1]);
+    }
+    if(this.x > 0 && this.y < rows - 1){
+      this.neighbors.push(grid[this.x-1][this.y+1]);
+    }
+    if(this.x < cols - 1 && this.y < rows - 1){
+      this.neighbors.push(grid[this.x+1][this.y+1]);
+    }
   }
 }
 function setup() {
-  createCanvas(400,400);
+  createCanvas(700,700);
   console.log('A*');
 
   w = width / cols;
@@ -103,7 +123,7 @@ function draw(){
 
     for (let i = 0; i < neighbors.length; i++) {
       const neighbor = neighbors[i];
-      if(!closedSet.includes(neighbor)){
+      if(!closedSet.includes(neighbor) && !neighbor.wall){
         let tempG = current.g + 1;
       
         if(openSet.includes(neighbor)){
