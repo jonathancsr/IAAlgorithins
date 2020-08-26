@@ -1,5 +1,5 @@
-let cols = 250;
-let rows = 250;
+let cols = 100;
+let rows = 100;
 let grid= new Array(cols)
 
 let openSet = [];
@@ -39,7 +39,7 @@ function Stop(i,j) {
       fill(0);
     }
     noStroke(0);
-    rect(this.x * w,this.y * h, w - 1,h - 1)
+    ellipse(this.x * w + w / 2,this.y * h + h / 2, w/2 - 1,h/2 - 1)
   }
 
   this.addNeighbors = function(grid){
@@ -126,16 +126,23 @@ function draw(){
       if(!closedSet.includes(neighbor) && !neighbor.wall){
         let tempG = current.g + 1;
       
+        let newPath = false;
         if(openSet.includes(neighbor)){
-          if(tempG < neighbor.g)
+          if(tempG < neighbor.g){
             neighbor.g = tempG;
+            newPath = true;
+          }
         }else{
           neighbor.g = tempG;
+          newPath = true;
           openSet.push(neighbor);
         } 
-        neighbor.h = heuristic(neighbor,end);
-        neighbor.f = neighbor.g + neighbor.h;
-        neighbor.previous = current;
+
+        if(newPath){
+          neighbor.h = heuristic(neighbor,end);
+          neighbor.f = neighbor.g + neighbor.h;
+          neighbor.previous = current;
+        }
       }
     }
   }
@@ -144,7 +151,7 @@ function draw(){
     noLoop();
     return;
   }
-  background(0);
+  background(255);
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -168,7 +175,13 @@ function draw(){
     temp = temp.previous;
   }
 
+  noFill();
+  stroke(255, 0 , 100)
+  strokeWeight(w/2)
+  beginShape();
   for (let i = 0; i < path.length; i++) {
-    path[i].show(color(0,0,255));    
+    vertex(path[i].x * w + w / 2, path[i].y * h + h / 2);    
   }
+
+  endShape();
 }
