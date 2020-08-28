@@ -1,4 +1,4 @@
-{
+export default {
   "citys": [
     {
       "name": "Oradea",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "name": "Timisoara",
+      "name": "Lugoj",
       "chidlren": [
         {
           "name": "Mehadia",
@@ -92,12 +92,27 @@
           "distance": 146
         }
       ]
+    },{
+      "name": "Pitesti",
+      "chidlren": [
+        {
+          "name": "Rimnicu Vicea",
+          "distance": 97
+        },{
+          "name": "Bucharest",
+          "distance": 101
+        }
+      ]
     },
     {
       "name": "Rimnicu Vicea",
       "chidlren": [
         {
-          "name": "Pitesti",
+          "name": "Bucharest",
+          "distance": 101
+        },
+        {
+          "name": "Rimnicu Vicea",
           "distance": 97
         }
       ]

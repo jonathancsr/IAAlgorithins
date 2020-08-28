@@ -1,5 +1,5 @@
-let cols = 100;
-let rows = 100;
+let cols = 75;
+let rows = 75;
 let grid= new Array(cols)
 
 let openSet = [];
@@ -15,6 +15,7 @@ function removeFromArray(arr, elt){
 }
 
 function heuristic(a,b){
+ let d = dist(a.x,b.x,a.y,b.y);
   let d = abs(a.x-b.x) + abs(a.y-b.y);
   return d;
 }

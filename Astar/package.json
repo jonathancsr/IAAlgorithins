@@ -4,5 +4,12 @@
   "description": "AStar algorithim",
   "main": "index.js",
   "author": "jonathancsr",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.61",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "start": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts"
+  }
 }
