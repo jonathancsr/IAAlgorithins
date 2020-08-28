@@ -26,6 +26,7 @@ export default class Find {
       Mehadia: 241,
       Dobreta: 242,
       Craiova: 160,
+      Pitesti:101,
       "Rimnicu Vicea": 193,
       Bucharest: 0,
       Fagaras: 176,
@@ -53,7 +54,7 @@ export default class Find {
       }
 
       var current = openSet[lowestIndex];
-      console.log(current.name)
+      console.log(`${current.name}: f-> ${current.f} g-> ${current.g} h-> ${current.h}`)
       if(current.name === to)
       {
         console.log("DONE!")
